@@ -43,7 +43,8 @@ public class GameManagerScript : MonoBehaviour
     public bool load;
     public int allowedTouchCount;
 
-    
+    public GameObject exit;
+    public GameObject reset;
 
     void Awake()
     {
@@ -205,6 +206,12 @@ public class GameManagerScript : MonoBehaviour
         L2.setPrice();
         L3.setPrice();
     }
+    
+    public void Menu()
+    {
+        exit.SetActive(true);
+        reset.SetActive(true);
+    }
 
     public void specialUpgrades()
     {
@@ -231,6 +238,9 @@ public class GameManagerScript : MonoBehaviour
         autoUpTab.SetActive(false);
         specialUpTab.SetActive(false);
         baseTab.SetActive(true);
+
+        exit.SetActive(false);
+        reset.SetActive(false);
     }
 
     void OnApplicationQuit()
