@@ -139,10 +139,11 @@ public class GameManagerScript : MonoBehaviour
         
         if (crit)
         {
-            copyOfText2.text = "+" + (factorOfClick * 2 + criticalDamage).ToString();
-            copyOfText2.color = new Color32(218, 114, 126, 255);
+            copyOfText2.text = (factorOfClick * 2 + criticalDamage).ToString();
+            copyOfText2.color = new Color32(70, 178, 157, 255);
+
         } 
-        else copyOfText2.text = "+" + factorOfClick.ToString();
+        else copyOfText2.text = factorOfClick.ToString();
 
 
         copyOfText.gameObject.transform.SetAsLastSibling();
