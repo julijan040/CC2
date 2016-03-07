@@ -29,5 +29,20 @@ public class MainMenuManager : MonoBehaviour {
     {
         SceneManager.LoadScene("infinity");
     }
-    
+
+    public void OpenFacebookPage()
+    {
+        float startTime;
+        startTime = Time.timeSinceLevelLoad;
+
+        //open the facebook app
+        Application.OpenURL("https://www.facebook.com/mordenkul/?fref=ts");
+
+        if (Time.timeSinceLevelLoad - startTime <= 1f)
+        {
+            //fail. Open safari.
+            Application.OpenURL("https://www.facebook.com/mordenkul/?fref=ts");
+        }
+    }
+
 }

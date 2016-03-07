@@ -24,6 +24,7 @@ public class GameManagerScript : MonoBehaviour
     GameObject autoUpTab;
     GameObject specialUpTab;
     GameObject mainTab;
+    GameObject powerTab;
     RectTransform crystal;
     GameObject canvas;
     public GameObject clickedText;
@@ -33,12 +34,12 @@ public class GameManagerScript : MonoBehaviour
     Level2PerSecond L2;
     Level3PerSecond L3;
     bool highest;
-
     GameObject ScrollTab;
     Vector2 dragStart;
     float UpperScrollLimit;
     float LowerScrollLimit;
     public bool canScroll;
+    public GameObject exitGumba;
 
     public bool load;
     public int allowedTouchCount;
@@ -69,6 +70,7 @@ public class GameManagerScript : MonoBehaviour
 
     void initGame()
     {
+        powerTab = GameObject.FindGameObjectWithTag("powerTab");
         mainTab = GameObject.FindGameObjectWithTag("MainTab");
         ScrollTab = GameObject.FindGameObjectWithTag("ScrollTab");
         canvas = GameObject.FindGameObjectWithTag("Canvas");
@@ -93,6 +95,8 @@ public class GameManagerScript : MonoBehaviour
         clickingUpTab.SetActive(false);
         autoUpTab.SetActive(false);
         specialUpTab.SetActive(false);
+        powerTab.SetActive(false);
+        exitGumba.SetActive(false);
 
         Screen.sleepTimeout = SleepTimeout.NeverSleep;
 
@@ -195,7 +199,21 @@ public class GameManagerScript : MonoBehaviour
         autoUpTab.SetActive(false);
         specialUpTab.SetActive(false);
         pupg.SetPrice();
+        powerTab.SetActive(false);
+        exitGumba.SetActive(false);
     }
+
+    public void PowerUpgrades()
+    {
+        baseTab.SetActive(false);
+        clickingUpTab.SetActive(false);
+        autoUpTab.SetActive(false);
+        specialUpTab.SetActive(false);
+        powerTab.SetActive(true);
+        pupg.SetPricePower();
+        exitGumba.SetActive(false);
+    }
+    
 
     public void autoUpgrades()
     {
@@ -206,12 +224,18 @@ public class GameManagerScript : MonoBehaviour
         L1.setPrice();
         L2.setPrice();
         L3.setPrice();
+        powerTab.SetActive(false);
+        exitGumba.SetActive(false);
     }
     
     public void Menu()
     {
-        exit.SetActive(true);
-        reset.SetActive(true);
+        baseTab.SetActive(false);
+        clickingUpTab.SetActive(false);
+        autoUpTab.SetActive(false);
+        specialUpTab.SetActive(false);
+        powerTab.SetActive(false);
+        exitGumba.SetActive(true);
     }
 
     public void specialUpgrades()
@@ -220,6 +244,8 @@ public class GameManagerScript : MonoBehaviour
         clickingUpTab.SetActive(false);
         autoUpTab.SetActive(false);
         specialUpTab.SetActive(true);
+        powerTab.SetActive(false);
+        exitGumba.SetActive(false);
     }
 
     public void saveAndExit()
@@ -261,6 +287,15 @@ public class GameManagerScript : MonoBehaviour
 
     void saveToData(saveData data)
     {
+        data.priceOfUpgPowerYellowe = pupg.priceOfPowerOfYellows;
+        data.priceOfUpgPowerOrange = pupg.priceOfPowerOfOranges;
+        data.priceOfPowerRed = pupg.priceOfPowerOfReds;
+
+        data.factorOfYellow = L1.factorOfMakersOfMoney;
+        data.factorOfOrange = L2.factorOfMakersOfMoney;
+        data.factorOfRed = L3.factorOfMakersOfMoney;
+
+
         data.criticalDamage = criticalDamage;
         data.critialChance = critialChance;
         data.timeTillEnd = timeTillEnd;
@@ -315,6 +350,15 @@ public class GameManagerScript : MonoBehaviour
 
     void loadFromData(saveData data)
     {
+
+        pupg.priceOfPowerOfYellows = data.priceOfUpgPowerYellowe;
+        pupg.priceOfPowerOfOranges = data.priceOfUpgPowerOrange;
+        pupg.priceOfPowerOfReds = data.priceOfPowerRed;
+
+        L1.factorOfMakersOfMoney = data.factorOfYellow;
+        L2.factorOfMakersOfMoney = data.factorOfOrange;
+        L3.factorOfMakersOfMoney = data.factorOfRed;
+
         criticalDamage = data.criticalDamage;
         critialChance = data.critialChance;
         timeTillEnd = data.timeTillEnd;
@@ -448,6 +492,14 @@ class saveData
     public int priceOfUpgClickPlusOne;
     public int priceOfUpgClickDouble;
     public int priceOfCriticalUpg;
+
+    public int priceOfUpgPowerYellowe;
+    public int priceOfUpgPowerOrange;
+    public int priceOfPowerRed;
+
+    public int factorOfYellow;
+    public int factorOfOrange;
+    public int factorOfRed;
 
     public int priceL1;
     public int priceL2;

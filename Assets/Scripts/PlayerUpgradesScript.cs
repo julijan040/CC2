@@ -10,11 +10,20 @@ public class PlayerUpgradesScript : MonoBehaviour {
     public int priceOfCriticalUpg;
     public int priceOfCriticalDamageUpg;
     public int priceOfallowedTouchCount;
+
+    public int priceOfPowerOfYellows;
+    public int priceOfPowerOfOranges;
+    public int priceOfPowerOfReds;
+
     Text plusDoublePerClick;
     Text plusOneScorePerClick;
     Text priceOfCriticalPerClick;
     Text priceOfCriticalDamage;
     Text priceOfallowedTouch;
+
+    public Text priceOfPowerOfYellowsText;
+    public Text priceOfPowerOfOrangesText;
+    public Text priceOfPowerOfRedsText;
 
     void Awake ()
     {
@@ -37,8 +46,49 @@ public class PlayerUpgradesScript : MonoBehaviour {
         plusOneScorePerClick.text = priceOfUpgClickPlusOne.ToString();
         priceOfCriticalPerClick.text = priceOfCriticalUpg.ToString();
     }
-	
-	public void ClickedPlusOne()
+
+    public void SetPricePower()
+    {
+        priceOfPowerOfYellowsText.text = priceOfPowerOfYellows.ToString();
+        priceOfPowerOfOrangesText.text = priceOfPowerOfOranges.ToString();
+        priceOfPowerOfRedsText.text = priceOfPowerOfReds.ToString();
+    }
+
+    public void ClickedYellowPower()
+    {
+        if ((GameManagerScript.money - priceOfPowerOfYellows) >= 0)
+        {
+            GameManagerScript.money -= priceOfUpgClickPlusOne;
+            priceOfPowerOfYellows += priceOfPowerOfYellows / 2;
+            GameManagerScript.gameObject.GetComponent<Level1PerSecond>().factorOfMakersOfMoney++;
+            priceOfPowerOfYellowsText.text = priceOfPowerOfYellows.ToString();
+        }
+    }
+
+    public void ClickedOrangePower()
+    {
+        if ((GameManagerScript.money - priceOfPowerOfOranges) >= 0)
+        {
+            GameManagerScript.money -= priceOfPowerOfOranges;
+            priceOfPowerOfOranges += priceOfPowerOfOranges / 2;
+            GameManagerScript.gameObject.GetComponent<Level2PerSecond>().factorOfMakersOfMoney++;
+            priceOfPowerOfOrangesText.text = priceOfPowerOfOranges.ToString();
+        }
+    }
+
+    public void ClickedRedPower()
+    {
+        if ((GameManagerScript.money - priceOfPowerOfReds) >= 0)
+        {
+            GameManagerScript.money -= priceOfPowerOfReds;
+            priceOfPowerOfReds += priceOfPowerOfReds / 2;
+            GameManagerScript.gameObject.GetComponent<Level3PerSecond>().factorOfMakersOfMoney++;
+            priceOfPowerOfRedsText.text = priceOfPowerOfReds.ToString();
+        }
+    }
+
+
+    public void ClickedPlusOne()
     {
         if((GameManagerScript.money - priceOfUpgClickPlusOne) >= 0)
         {
