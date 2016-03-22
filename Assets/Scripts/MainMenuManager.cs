@@ -3,7 +3,9 @@ using System.Collections;
 using UnityEngine.SceneManagement;
 
 public class MainMenuManager : MonoBehaviour {
-    
+
+    public GameObject scrollTab;
+
 	void Start ()
     {
 	
@@ -43,6 +45,16 @@ public class MainMenuManager : MonoBehaviour {
             //fail. Open safari.
             Application.OpenURL("https://www.facebook.com/mordenkul/?fref=ts");
         }
+    }
+
+    public void playAnimation()
+    {
+        scrollTab.GetComponent<Animator>().Play("sidescrollerAnim");
+    }
+
+    public void playReverseAnimation()
+    {
+        scrollTab.GetComponent<Animator>().Play("sidescrollerAnimReverse");
     }
 
 }
