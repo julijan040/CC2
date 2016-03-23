@@ -58,7 +58,7 @@ public class PlayerUpgradesScript : MonoBehaviour {
     {
         if ((GameManagerScript.money - priceOfPowerOfYellows) >= 0)
         {
-            GameManagerScript.money -= priceOfUpgClickPlusOne;
+            GameManagerScript.money -= priceOfPowerOfYellows;
             priceOfPowerOfYellows += priceOfPowerOfYellows / 2;
             GameManagerScript.gameObject.GetComponent<Level1PerSecond>().factorOfMakersOfMoney++;
             priceOfPowerOfYellowsText.text = priceOfPowerOfYellows.ToString();
