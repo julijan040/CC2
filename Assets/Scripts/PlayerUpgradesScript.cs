@@ -38,6 +38,7 @@ public class PlayerUpgradesScript : MonoBehaviour {
         plusOneScorePerClick.text = priceOfUpgClickPlusOne.ToString();
         priceOfCriticalPerClick.text = priceOfCriticalUpg.ToString();
         priceOfCriticalDamage.text = priceOfCriticalDamageUpg.ToString();
+        SetPricePower();
     }
 
     public void SetPrice()
@@ -126,8 +127,9 @@ public class PlayerUpgradesScript : MonoBehaviour {
         if ((GameManagerScript.money - priceOfCriticalDamageUpg) >= 0)
         {
             GameManagerScript.money -= priceOfCriticalDamageUpg;
-            priceOfCriticalDamageUpg *= 3;
-            GameManagerScript.criticalDamage += 1;
+            priceOfCriticalDamageUpg += priceOfCriticalDamageUpg/2;
+            if (GameManagerScript.criticalDamage / 10 == 0) GameManagerScript.criticalDamage += 1;
+            else GameManagerScript.criticalDamage += GameManagerScript.criticalDamage/10;
             priceOfCriticalDamage.text = priceOfCriticalDamageUpg.ToString();
         }
     }

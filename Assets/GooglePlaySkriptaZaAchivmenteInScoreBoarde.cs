@@ -25,11 +25,15 @@
 public static class GooglePlaySkriptaZaAchivmenteInScoreBoarde
 {
         public const string achievement_get_100_crystals = "CgkImp-w7uYcEAIQAQ"; // <GPGSID>
+        public const string achievement_get_5000_crystals = "CgkImp-w7uYcEAIQBQ"; // <GPGSID>
+        public const string achievement_get_20000_crystals = "CgkImp-w7uYcEAIQCA"; // <GPGSID>
+        public const string leaderboard_240_sec_leaderboard = "CgkImp-w7uYcEAIQBg"; // <GPGSID>
+        public const string achievement_get_200_crystals = "CgkImp-w7uYcEAIQAg"; // <GPGSID>
         public const string achievement_get_1000_crystals = "CgkImp-w7uYcEAIQBA"; // <GPGSID>
         public const string achievement_get_500_crystals = "CgkImp-w7uYcEAIQAw"; // <GPGSID>
-        public const string achievement_get_200_crystals = "CgkImp-w7uYcEAIQAg"; // <GPGSID>
-        public const string achievement_get_5000_crystals = "CgkImp-w7uYcEAIQBQ"; // <GPGSID>
-        public const string leaderboard_leaderboard_of_the_best_players = "CgkImp-w7uYcEAIQBg"; // <GPGSID>
+        public const string leaderboard_60_sec_leaderboard = "CgkImp-w7uYcEAIQCg"; // <GPGSID>
+        public const string leaderboard_infinity_leaderboard = "CgkImp-w7uYcEAIQCQ"; // <GPGSID>
+        public const string achievement_get_10000_crystals = "CgkImp-w7uYcEAIQBw"; // <GPGSID>
 
 }
 

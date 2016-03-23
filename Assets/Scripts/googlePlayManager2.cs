@@ -6,7 +6,8 @@ using UnityEngine.SocialPlatforms;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class GooglePlayManager : MonoBehaviour {
+public class googlePlayManager2 : MonoBehaviour
+{
 
     GameManagerScript GameManager;
     public bool ACH100;
@@ -16,46 +17,26 @@ public class GooglePlayManager : MonoBehaviour {
     public bool ACH5000;
     public bool SCORE;
     public bool mainMenu;
-    public bool sezdesetsec;
 
-    void Start ()
+    void Start()
     {
         if (!mainMenu) GameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManagerScript>();
-        
+
         // Activate the Google Play Games platform
         PlayGamesPlatform.Activate();
-        
+
         //login
         Social.localUser.Authenticate((bool success) => {
-            
-        });
-        
-    }
 
-    public void postInfinityScore()
-    {
-        Social.ReportScore(GameManager.score, "CgkImp-w7uYcEAIQCQ", (bool success) => {
-            // handle success or failure
         });
 
-        ((PlayGamesPlatform)Social.Active).ShowLeaderboardUI("CgkImp-w7uYcEAIQCQ");
-        
     }
 
-    public void showAchivments()
-    {
-        Social.ShowAchievementsUI();
-    }
+    
 
-    public void showLeaderboard()
+    void Update()
     {
-        Social.ShowLeaderboardUI();
-    }
-
-
-    void Update ()
-    {
-        if(!mainMenu)
+        if (!mainMenu)
         {
             if (GameManager.score >= 100 && !ACH100)
             {
@@ -110,22 +91,22 @@ public class GooglePlayManager : MonoBehaviour {
 
             if (GameManager.timeTillEnd <= 0 && !SCORE && !mainMenu)
             {
-                
-                 SCORE = true;
-                    Social.ReportScore(GameManager.score, "CgkImp-w7uYcEAIQBg", (bool success) => {
-                        // handle success or failure
-                    });
 
-                    ((PlayGamesPlatform)Social.Active).ShowLeaderboardUI("CgkImp-w7uYcEAIQBg");
+                SCORE = true;
+                Social.ReportScore(GameManager.score, "CgkImp-w7uYcEAIQCg", (bool success) => {
+                    // handle success or failure
+                });
 
-                    SceneManager.LoadScene("mainMenu");
-                
-                
+                ((PlayGamesPlatform)Social.Active).ShowLeaderboardUI("CgkImp-w7uYcEAIQCg");
+
+                SceneManager.LoadScene("mainMenu");
+
+
 
 
             }
         }
 
-	    
+
     }
 }
