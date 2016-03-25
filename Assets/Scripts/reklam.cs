@@ -12,6 +12,7 @@ public class reklam : MonoBehaviour
 
     public static bool pogledalDoKonca;
     public static bool kliknil;
+    
 
     void Start()
     {
@@ -88,12 +89,14 @@ public class reklam : MonoBehaviour
 
     public static void zgodilKlik()
     {
-
+        GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManagerScript>().money += 100;
+        GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManagerScript>().score += 100;
     }
 
     public static void zgodilPogled()
     {
-
+        GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManagerScript>().money += 50;
+        GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManagerScript>().score += 50;
     }
 
 

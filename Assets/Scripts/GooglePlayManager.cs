@@ -119,8 +119,7 @@ public class GooglePlayManager : MonoBehaviour {
                     ((PlayGamesPlatform)Social.Active).ShowLeaderboardUI("CgkImp-w7uYcEAIQBg");
 
                     SceneManager.LoadScene("mainMenu");
-                
-                
+
 
 
             }
