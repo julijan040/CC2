@@ -2,20 +2,29 @@
 using System.Collections;
 using System;
 using System.Collections.Generic;
-using UnityEngine.UI;
+using UnityEngine.Advertisements;
+
+public class UnityAdsExample : MonoBehaviour
+{
+    
+
+    
+}
+
 
 public class reklam : MonoBehaviour
 {
 
     // Use this for initialization
-    Dictionary<string, object> values;
+    //Dictionary<string, object> values;
 
-    public static bool pogledalDoKonca;
-    public static bool kliknil;
+    //public static bool pogledalDoKonca;
+    //public static bool kliknil;
     
 
     void Start()
     {
+        /*
         //Your App IDs can be found in the Vungle Dashboard on your apps' pages
         Vungle.init("56f454ab7c4a036e69000018", "Test_iOS", "56db21cda81e752f63000013");
 
@@ -60,7 +69,7 @@ public class reklam : MonoBehaviour
 
 
         values = new Dictionary<string, object>();
-        values.Add("large", true);
+        values.Add("large", true);*/
 
     }
 
@@ -72,18 +81,19 @@ public class reklam : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        /*
         if (kliknil)
         {
             kliknil = false;
-            zgodilKlik();
+            //zgodilKlik();
         }
         if (pogledalDoKonca)
         {
             pogledalDoKonca = false;
-            zgodilPogled();
+            //zgodilPogled();
         }
 
-      
+      */
     }
 
 
@@ -99,17 +109,48 @@ public class reklam : MonoBehaviour
         GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManagerScript>().score += 50;
     }
 
-
+    
     public static void playAD()
     {
         //Short and simple!
-        Dictionary<string, object> options = new Dictionary<string, object>();
+        //Dictionary<string, object> options = new Dictionary<string, object>();
         //options["incentivized"] = true;
-        Vungle.playAdWithOptions(options);
+        //Vungle.playAdWithOptions(options);
+        ShowRewardedAd();
+    }
+
+    public static void ShowRewardedAd()
+    {
+        if (Advertisement.IsReady("rewardedVideoZone"))
+        {
+            var options = new ShowOptions { resultCallback = HandleShowResult };
+            Advertisement.Show("rewardedVideoZone", options);
+        }
+    }
+
+    private static void HandleShowResult(ShowResult result)
+    {
+        switch (result)
+        {
+            case ShowResult.Finished:
+                Debug.Log("The ad was successfully shown.");
+                //
+                // YOUR CODE TO REWARD THE GAMER
+                // Give coins etc.
+                zgodilPogled();
+                break;
+            case ShowResult.Skipped:
+                Debug.Log("The ad was skipped before reaching the end.");
+                break;
+            case ShowResult.Failed:
+                Debug.LogError("The ad failed to be shown.");
+                break;
+            
+        }
     }
 
 
-
+    /*
     void OnApplicationPause(bool pauseStatus)
     {
         if (pauseStatus)
