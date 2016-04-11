@@ -1,14 +1,28 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MainMenuManager : MonoBehaviour {
 
     public GameObject scrollTab;
 
-	void Start ()
+    public Toggle sound;
+    void Start ()
     {
-	
+        
+        if (PlayerPrefs.HasKey("soundListener"))
+        {
+            if (PlayerPrefs.GetInt("soundListener") == 0)
+            {
+
+                sound.isOn = true;
+            }
+        }
+        else
+        {
+            PlayerPrefs.SetInt("soundListener", 1);
+        }
 	}
 	
 	void Update ()
@@ -61,6 +75,20 @@ public class MainMenuManager : MonoBehaviour {
     public void playReverseAnimation()
     {
         scrollTab.GetComponent<Animator>().Play("sidescrollerAnimReverse");
+    }
+
+
+    public void toggleSound()
+    {
+        if (sound.isOn)
+        {
+            PlayerPrefs.SetInt("soundListener", 0);
+
+        }else
+        {
+            PlayerPrefs.SetInt("soundListener", 1);
+        }
+        AudioListener.pause = sound.isOn;
     }
 
 }
